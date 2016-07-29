@@ -29,6 +29,7 @@
         this.b2Body.CreateFixture(fixDef);
         this.b2Body.SetLinearDamping(damping);
         this.b2Body.SetAngularDamping(damping);
+        this.b2Body.SetUserData(this);
 
         this.anchor.setTo(0.5, 0.5);
         this.scale.set(scale, scale);

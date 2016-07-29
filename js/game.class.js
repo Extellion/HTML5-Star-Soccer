@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function () {
       b2AABB = Box2D.Collision.b2AABB,
       b2BodyDef = Box2D.Dynamics.b2BodyDef,
       b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
-      b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
+      b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
+      b2ContactListener = Box2D.Dynamics.b2ContactListener;
 
   var debugDraw;
   var p1, p2;
@@ -86,6 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
        butDef.shape.SetAsBox(0.3,1.3);
        bodyDef.position.Set(0.5, 7.6);
        world.CreateBody(bodyDef).CreateFixture(butDef);
+
+
+    var listener = new b2ContactListener;
+    listener.BeginContact = function(contact) {
+      console.log(contact.GetFixtureA().GetBody(),contact.GetFixtureB().GetBody());
+    }
+    world.SetContactListener(listener);
+
 
       game.add.sprite(0, 0, 'ground');
 
